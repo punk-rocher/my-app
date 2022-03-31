@@ -1,52 +1,24 @@
-import React, { Component } from "react";
-import "./App.css";
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Albums from "./components/albums";
+import DisplayAlbums from "./components/displayAlbums";
 
-
-class App extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      items: [],
-      isLoaded: false,
-    }
-  }
-
-  componentDidMount() {
-    fetch('https://jsonplaceholder.typicode.com/albums')
-      .then(res => res.json())
-      .then(json => {
-        this.setState({
-          isLoaded: true,
-          items: json,
-        })
-      });
-  }
-
-  render() {
-
-    var { isLoaded, items } = this.state;
-
-    if (!isLoaded) {
-      return <div> Loading...</div>;
-    }
-
-    else {
-
-      return (
-        <div className="App">
-          {/* <div class="bg_image"></div> */}
-          <ul class = "Album">
-            {items.map(item =>(
-              <li key={item.id}>
-              Album: {item.title}
-              </li>
-            ))};
-          </ul>
-        </div>
-      );
-    }
-  }
+function App() {
+	return (
+		<div>
+			{/* <NavBar /> */}
+			<Router>
+				<Switch>
+					<Route path="/" exact={true}>
+						<Albums />
+					</Route>
+					<Route path="/displayAlbums">
+						<DisplayAlbums />
+					</Route>
+				</Switch>
+			</Router>
+		</div>
+	);
 }
 
 export default App;
