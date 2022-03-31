@@ -30,7 +30,7 @@ const Albums = () => {
 			{/* <div class="bg_image"></div> */}
 			<ul class="Album">
 				{state?.json?.map((item) => (
-					<li key={item.id} onClick={() => handleNavigate(item.id)}>
+					<li key={item.id} onClick={() => handleNavigate(item.id)}>  
 						Album: {item.title}
 					</li>
 				))}
